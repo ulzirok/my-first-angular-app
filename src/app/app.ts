@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterProductsPipe } from './pipes/filter-products-pipe';
 import { Modal } from './components/modal/modal';
 import { CreateProduct } from './components/create-product/create-product';
+import { ModalService } from './services/modal-service';
 
 @Component({
   selector: 'app-root',
@@ -27,18 +28,18 @@ export class App implements OnInit {
   products$!: Observable<IProduct[]>
   term = ''
   
-  constructor(private productsService: ProductService) {}
+  constructor(
+    public productsService: ProductService,
+    public modalService: ModalService) { }
   
   ngOnInit(): void {
     this.loading = true
     
-    // this.productsService.getAll().subscribe(products => {
-    //   console.log(products);
-    //   this.products = products
-    //   this.loading = false
-    // })
-    this.products$ = this.productsService.getAll().pipe(
-      tap(() => this.loading = false)
-    )
+    this.productsService.getAll().subscribe(() => {
+      this.loading = false
+    })
+    // this.products$ = this.productsService.getAll().pipe(
+    //   tap(() => this.loading = false)
+    // )
   }
 }
