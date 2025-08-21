@@ -9,11 +9,13 @@ import { ProductService } from './services/product-service';
 import { Observable, tap } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { FilterProductsPipe } from './pipes/filter-products-pipe';
+import { Modal } from './components/modal/modal';
+import { CreateProduct } from './components/create-product/create-product';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TitleCasePipe, Product, AsyncPipe, GlobalError, FormsModule, NgIf, FilterProductsPipe],
+  imports: [RouterOutlet, TitleCasePipe, Product, AsyncPipe, GlobalError, FormsModule, NgIf, FilterProductsPipe, Modal, CreateProduct],
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
